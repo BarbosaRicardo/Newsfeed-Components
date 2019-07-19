@@ -106,13 +106,15 @@ const data = [
 
 //defines articles
 const articles = document.querySelector('.articles')
+console.log(articles)
 
-data.map(item=> {
-  console.log('creating item', createArticle(item))
-  articles.appendChild(createArticle(item))
-})
+data.map((item)=> {
+  console.log('item', item)
+  articles.appendChild(createArticle(item));
+  
+})  
 
-function createArticle(data) {
+function createArticle(arg) {
   //define new elements 
   const article = document.createElement('div')
   const articleTitle = document.createElement('h2')
@@ -120,15 +122,16 @@ function createArticle(data) {
   const firstP = document.createElement('p')
   const secondP = document.createElement('p')
   const thirdP = document.createElement('p')
-  const expandButton = document.createElement('span')
+  const expand = document.createElement('span')
 
-  //textContent 
-  articleTitle.textContent = data.title;
-  articleDate.textContent = data.date;
-  firstP.textContent = data.firstP;
-  secondP.textContent = data.secondP;
-  thirdP.textContent = data.thirdP;
-  expandButton.textContent = 'Expand'
+  //set textContent 
+  expand.textContent = 'expand'
+  articleTitle.textContent = arg.title 
+  articleDate.textContent = arg.date
+  firstP.textContent = arg.firstParagraph
+  secondP.textContent = arg.secondParagraph
+  thirdP.textContent = arg.thirdParagraph
+
 
 
   //setup structure of elements 
@@ -137,19 +140,21 @@ function createArticle(data) {
   article.appendChild(firstP)
   article.appendChild(secondP)
   article.appendChild(thirdP)
-  article.appendChild(expandButton)
+  article.appendChild(expand)
 
   //set class names 
   article.classList.add('article')
   articleDate.classList.add('date')
-  expandButton.classList.add('expandButton')
+  expand.classList.add('expandButton')
   
 
   //span event
-  expandButton.addEventListener('click', () => {
+  expand.addEventListener('click', () => {
     article.classList.toggle('article-open')
   })
 
   return article
 
 }
+
+
