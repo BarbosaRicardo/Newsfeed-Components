@@ -108,7 +108,7 @@ const data = [
 const articles = document.querySelector('.articles')
 
 data.map(item=> {
-  console.log('creating item', item.title)
+  console.log('creating item', createArticle(item))
   articles.appendChild(createArticle(item))
 })
 
@@ -120,7 +120,7 @@ function createArticle(data) {
   const firstP = document.createElement('p')
   const secondP = document.createElement('p')
   const thirdP = document.createElement('p')
-  const expand = document.createElement('span')
+  const expandButton = document.createElement('span')
 
   //textContent 
   articleTitle.textContent = data.title;
@@ -128,7 +128,7 @@ function createArticle(data) {
   firstP.textContent = data.firstP;
   secondP.textContent = data.secondP;
   thirdP.textContent = data.thirdP;
-  expand.textContent = 'Expand'
+  expandButton.textContent = 'Expand'
 
 
   //setup structure of elements 
@@ -141,12 +141,12 @@ function createArticle(data) {
 
   //set class names 
   article.classList.add('article')
-  date.classList.add('date')
-  expand.classList.add('expandButton')
+  articleDate.classList.add('date')
+  expandButton.classList.add('expandButton')
   
 
   //span event
-  expand.addEventListener('click', () => {
+  expandButton.addEventListener('click', () => {
     article.classList.toggle('article-open')
   })
 
